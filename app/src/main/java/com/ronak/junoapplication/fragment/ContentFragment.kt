@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ronak.junoapplication.JunoViewModel
 import com.ronak.junoapplication.databinding.FragmentContentBinding
 import com.ronak.junoapplication.dto.ResponseDto
+import com.ronak.junoapplication.remote.State
 
 class ContentFragment : Fragment() {
 
@@ -35,7 +36,7 @@ class ContentFragment : Fragment() {
         arguments?.let { screenState = ContentFragmentArgs.fromBundle(it).state }
 
         junoViewModel.responseResource.observe(viewLifecycleOwner) {
-            if (it) {
+            if (it.state == State.SUCCESS) {
                 if (screenState) renderData(junoViewModel.valuesResponseData.value)
                 else renderData(junoViewModel.emptyResponseData.value)
             }
