@@ -1,6 +1,6 @@
-package com.ronak.junoapplication
+package com.ronak.junoApplication
 
-import com.ronak.junoapplication.remote.RetrofitService
+import com.ronak.junoApplication.remote.RetrofitService
 
 class ApiRepository {
     var apiService = RetrofitService.service

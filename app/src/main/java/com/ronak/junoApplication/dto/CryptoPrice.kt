@@ -1,4 +1,4 @@
-package com.ronak.junoapplication.dto
+package com.ronak.junoApplication.dto
 
 class CryptoPrice(
     var logo: String? = null,

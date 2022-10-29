@@ -1,4 +1,4 @@
-package com.ronak.junoapplication.dto
+package com.ronak.junoApplication.dto
 
 class CryptoBalance {
     var title: String? = null

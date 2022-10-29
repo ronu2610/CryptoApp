@@ -1,4 +1,4 @@
-package com.ronak.junoapplication
+package com.ronak.junoApplication
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

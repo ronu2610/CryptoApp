@@ -1,6 +1,6 @@
-package com.ronak.junoapplication.remote
+package com.ronak.junoApplication.remote
 
-import com.ronak.junoapplication.dto.ResponseDto
+import com.ronak.junoApplication.dto.ResponseDto
 import retrofit2.Response
 import retrofit2.http.GET
 

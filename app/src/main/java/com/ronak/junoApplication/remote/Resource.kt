@@ -1,4 +1,4 @@
-package com.ronak.junoapplication.remote
+package com.ronak.junoApplication.remote
 
 open class Resource<T>(
     val state: State? = null,

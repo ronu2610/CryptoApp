@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isValues"
+            type="boolean" />
+
+        <variable
+            name="yourHolding"
+            type="com.ronak.junoApplication.dto.YourCryptoHolding" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp">
+
+        <ImageView
+            android:id="@+id/iv_crypto"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:contentDescription="@string/crypto_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:urlData="@{yourHolding.logo}"
+            tools:src="@drawable/ic_app_icon" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_crypto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:text="@{yourHolding.title}"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            app:layout_constraintBottom_toTopOf="@id/tv_time"
+            app:layout_constraintEnd_toStartOf="@id/btn_deposit"
+            app:layout_constraintStart_toEndOf="@id/iv_crypto"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="BTC" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{@string/tokens_placeholder(yourHolding.current_bal_in_token, yourHolding.title)}"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:visibility="@{isValues?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_deposit"
+            app:layout_constraintStart_toEndOf="@id/iv_crypto"
+            app:layout_constraintTop_toBottomOf="@id/tv_crypto"
+            tools:text="230 BTC" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_deposit"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/deposit"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:visibility="@{isValues?View.GONE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_buy"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginEnd="12dp"
+            android:text="@string/buy"
+            android:textAppearance="?attr/textAppearanceCaption"
+            android:visibility="@{isValues?View.GONE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:text="@{@string/dollars_placeholder(yourHolding.current_bal_in_usd)}"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:visibility="@{isValues?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/dollars_placeholder" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_crypto" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

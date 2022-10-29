@@ -1,4 +1,4 @@
-package com.ronak.junoapplication.dto
+package com.ronak.junoApplication.dto
 
 data class TransactionDto(
     var txn_logo: String? = null,

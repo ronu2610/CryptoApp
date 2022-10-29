@@ -1,4 +1,4 @@
-package com.ronak.junoapplication.fragment
+package com.ronak.junoApplication.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.ronak.junoapplication.JunoViewModel
-import com.ronak.junoapplication.databinding.FragmentContentBinding
-import com.ronak.junoapplication.dto.ResponseDto
-import com.ronak.junoapplication.remote.State
+import com.ronak.junoApplication.JunoViewModel
+import com.ronak.junoApplication.adapter.CurrentPricesAdapter
+import com.ronak.junoApplication.adapter.TransactionsAdapter
+import com.ronak.junoApplication.adapter.YourHoldingsAdapter
+import com.ronak.junoApplication.databinding.FragmentContentBinding
+import com.ronak.junoApplication.dto.ResponseDto
+import com.ronak.junoApplication.remote.State
 
 class ContentFragment : Fragment() {
 
     private lateinit var binding: FragmentContentBinding
-    private var screenState = false
+    private var isValues = false
     private lateinit var junoViewModel: JunoViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,23 +36,33 @@ class ContentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.let { screenState = ContentFragmentArgs.fromBundle(it).state }
+        arguments?.let { isValues = ContentFragmentArgs.fromBundle(it).state }
 
         junoViewModel.responseResource.observe(viewLifecycleOwner) {
             if (it.state == State.SUCCESS) {
-                if (screenState) renderData(junoViewModel.valuesResponseData.value)
+                if (isValues) renderData(junoViewModel.valuesResponseData.value)
                 else renderData(junoViewModel.emptyResponseData.value)
             }
         }
 
-        if (screenState) {
+        if (isValues) {
             junoViewModel.getValues()
         } else {
             junoViewModel.getEmptyValues()
         }
+        binding.isValues = isValues
     }
 
     private fun renderData(responseDto: ResponseDto?) {
-        binding.tvData.text = responseDto.toString()
+        binding.responseDto = responseDto
+
+        val holdingsAdapter = YourHoldingsAdapter(isValues, responseDto?.your_crypto_holdings)
+        binding.rvHoldings.adapter = holdingsAdapter
+
+        val priceAdapter = CurrentPricesAdapter(responseDto?.crypto_prices)
+        binding.rvPrices.adapter = priceAdapter
+
+        val transactionAdapter = TransactionsAdapter(responseDto?.all_transactions)
+        binding.rvTransactions.adapter = transactionAdapter
     }
 }

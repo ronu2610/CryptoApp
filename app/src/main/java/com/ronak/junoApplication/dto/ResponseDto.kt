@@ -1,4 +1,4 @@
-package com.ronak.junoapplication.dto
+package com.ronak.junoApplication.dto
 
 data class ResponseDto(
     var crypto_balance: CryptoBalance? = null,
