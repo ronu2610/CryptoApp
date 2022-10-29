@@ -3,7 +3,7 @@ package com.ronak.junoApplication
 import com.ronak.junoApplication.remote.RetrofitService
 
 class ApiRepository {
-    var apiService = RetrofitService.service
+    private var apiService = RetrofitService.service
 
     suspend fun getEmptyValues() = apiService.getEmptyValues()
 

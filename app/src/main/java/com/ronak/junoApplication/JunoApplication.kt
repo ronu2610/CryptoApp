@@ -1,4 +1,4 @@
-package com.ronak.junoApplication;
+package com.ronak.junoApplication
 
 import android.app.Application
 import com.facebook.stetho.Stetho

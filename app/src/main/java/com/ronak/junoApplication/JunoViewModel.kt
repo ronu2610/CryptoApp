@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class JunoViewModel(application: Application) : AndroidViewModel(application) {
 
-    var apiRepository = ApiRepository()
+    private var apiRepository = ApiRepository()
     private var _emptyResponseData = MutableLiveData<ResponseDto?>()
     private var _valuesResponseData = MutableLiveData<ResponseDto?>()
     private var _responseResource = MutableLiveData<Resource<ResponseDto?>>()

@@ -22,7 +22,7 @@ class ContentFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        junoViewModel = ViewModelProvider(requireActivity()).get(JunoViewModel::class.java)
+        junoViewModel = ViewModelProvider(requireActivity())[JunoViewModel::class.java]
     }
 
     override fun onCreateView(
