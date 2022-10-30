@@ -21,7 +21,8 @@
             android:layout_height="160dp"
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/grey">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -37,6 +38,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:urlData="@{cryptoPrice.logo}"
+                    tools:src="@drawable/ic_app_icon" />
+
+                <ImageView
+                    android:id="@+id/iv_graph"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/crypto_icon"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_crypto"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="?attr/colorError"
+                    app:urlData='@{"https://img.icons8.com/external-dreamstale-lineal-dreamstale/64/000000/external-chart-finances-and-shopping-dreamstale-lineal-dreamstale.png"}'
                     tools:src="@drawable/ic_app_icon" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -58,12 +74,12 @@
                     android:layout_marginTop="4dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="@{@string/dollars_placeholder(cryptoPrice.current_price_in_usd)}"
                     android:textAppearance="?attr/textAppearanceHeadline6"
+                    app:amountText="@{cryptoPrice.current_price_in_usd}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_crypto"
-                    tools:text="@string/dollars_placeholder" />
+                    tools:text="$2,888" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -74,26 +90,31 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="8dp"
+            android:elevation="8dp"
             app:backgroundTint="?attr/colorOnPrimary"
             app:cornerRadius="4dp"
             app:icon="@drawable/ic_deposit"
             app:layout_constraintBottom_toTopOf="@id/cv_price"
             app:layout_constraintEnd_toStartOf="@id/btn_buy"
-            app:layout_constraintTop_toTopOf="@id/cv_price" />
+            app:layout_constraintTop_toTopOf="@id/cv_price"
+            app:strokeColor="?attr/colorPrimary" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_buy"
             style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="48dp"
             android:layout_marginEnd="-8dp"
+            android:elevation="8dp"
+            android:padding="0dp"
             android:text="@string/buy"
             android:textAppearance="?attr/textAppearanceCaption"
             app:backgroundTint="?attr/colorOnPrimary"
             app:cornerRadius="4dp"
             app:layout_constraintBottom_toTopOf="@id/cv_price"
             app:layout_constraintEnd_toEndOf="@id/cv_price"
-            app:layout_constraintTop_toTopOf="@id/cv_price" />
+            app:layout_constraintTop_toTopOf="@id/cv_price"
+            app:strokeColor="?attr/colorPrimary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

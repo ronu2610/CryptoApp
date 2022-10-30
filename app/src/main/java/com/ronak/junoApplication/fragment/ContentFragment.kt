@@ -19,6 +19,8 @@ import com.ronak.junoApplication.dto.TransactionDto
 import com.ronak.junoApplication.remote.Resource
 import com.ronak.junoApplication.remote.State
 import com.ronak.junoApplication.util.BuyButtonClickListener
+import com.ronak.junoApplication.util.ImageUtil
+import java.math.BigDecimal
 
 class ContentFragment : Fragment() {
 
@@ -44,6 +46,7 @@ class ContentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let { isValues = ContentFragmentArgs.fromBundle(it).state }
 
+        ImageUtil.loadGif(binding.ivMain, R.raw.crypto, requireContext().packageName)
         junoViewModel.responseResource.observe(viewLifecycleOwner) {
             handleResource(it)
         }
@@ -99,10 +102,10 @@ class ContentFragment : Fragment() {
 
     private fun buyButtonClickListener(transactionAdapter: TransactionsAdapter) =
         object : BuyButtonClickListener {
-            override fun onBuyButtonClick(logo: String?, crypto: String?, price: String?) {
+            override fun onBuyButtonClick(logo: String?, crypto: String?, price: BigDecimal?) {
                 val transactionDto = TransactionDto()
                 transactionDto.title = getString(R.string.bought_crypto, crypto)
-                transactionDto.txn_amount = price ?: getString(R.string.na)
+                transactionDto.txn_amount = price
                 transactionDto.txn_logo = logo
                 transactionDto.txn_time = getString(R.string.just_now)
                 transactionAdapter.updateTransactionDtoList(transactionDto)

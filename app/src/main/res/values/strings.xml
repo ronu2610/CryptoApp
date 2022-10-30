@@ -9,7 +9,6 @@
     <string name="buy">Buy</string>
     <string name="crypto_icon">crypto_icon</string>
     <string name="tokens_placeholder">%1$s %2$s</string>
-    <string name="dollars_placeholder">$%s</string>
     <string name="your_crypto_holdings">Your Crypto Holdings</string>
     <string name="recent_transactions">Recent Transactions</string>
     <string name="current_prices">Current Prices</string>

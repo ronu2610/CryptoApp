@@ -73,9 +73,11 @@
             android:text="@string/deposit"
             android:textAppearance="?attr/textAppearanceCaption"
             android:visibility="@{isValues?View.GONE:View.VISIBLE}"
+            app:cornerRadius="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btn_buy"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="?attr/colorPrimary" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_buy"
@@ -85,6 +87,7 @@
             android:text="@string/buy"
             android:textAppearance="?attr/textAppearanceCaption"
             android:visibility="@{isValues?View.GONE:View.VISIBLE}"
+            app:cornerRadius="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -94,13 +97,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            android:text="@{@string/dollars_placeholder(yourHolding.current_bal_in_usd)}"
             android:textAppearance="?attr/textAppearanceSubtitle1"
             android:visibility="@{isValues?View.VISIBLE:View.GONE}"
+            app:amountText="@{yourHolding.current_bal_in_usd}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/dollars_placeholder" />
+            tools:text="$24.12" />
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
