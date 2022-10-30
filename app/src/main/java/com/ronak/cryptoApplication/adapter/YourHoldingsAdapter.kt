@@ -1,13 +1,13 @@
-package com.ronak.junoApplication.adapter
+package com.ronak.cryptoApplication.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.ronak.junoApplication.databinding.LayoutYourHoldingsBinding
-import com.ronak.junoApplication.dto.CryptoPrice
-import com.ronak.junoApplication.dto.YourCryptoHolding
-import com.ronak.junoApplication.util.BuyButtonClickListener
+import com.ronak.cryptoApplication.databinding.LayoutYourHoldingsBinding
+import com.ronak.cryptoApplication.dto.CryptoPrice
+import com.ronak.cryptoApplication.dto.YourCryptoHolding
+import com.ronak.cryptoApplication.util.BuyButtonClickListener
 
 class YourHoldingsAdapter(
     private var isValues: Boolean,

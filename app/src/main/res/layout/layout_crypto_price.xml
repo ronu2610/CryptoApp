@@ -7,7 +7,7 @@
 
         <variable
             name="cryptoPrice"
-            type="com.ronak.junoApplication.dto.CryptoPrice" />
+            type="com.ronak.cryptoApplication.dto.CryptoPrice" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_price"
             android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_height="172dp"
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -62,24 +62,50 @@
                     android:layout_marginTop="12dp"
                     android:text="@{cryptoPrice.title}"
                     android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textColor="@android:color/darker_gray"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_crypto"
                     tools:text="BTC" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_time"
+                    android:id="@+id/tv_price"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:textStyle="bold"
                     app:amountText="@{cryptoPrice.current_price_in_usd}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_crypto"
                     tools:text="$2,888" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_growth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:text="@string/growth_percent"
+                    android:textAppearance="?attr/textAppearanceOverline"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_price" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/growth_time"
+                    android:textAppearance="?attr/textAppearanceOverline"
+                    android:textColor="@android:color/darker_gray"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_growth"
+                    app:layout_constraintTop_toBottomOf="@id/tv_price" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

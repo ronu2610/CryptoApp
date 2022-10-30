@@ -1,4 +1,4 @@
-package com.ronak.junoApplication
+package com.ronak.cryptoApplication
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import com.ronak.junoApplication.databinding.ActivityMainBinding
+import com.ronak.cryptoApplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

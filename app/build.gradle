@@ -14,11 +14,11 @@ android {
     dataBinding {
         enabled = true
     }
-    namespace 'com.ronak.junoApplication'
+    namespace 'com.ronak.cryptoApplication'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.ronak.junoApplication"
+        applicationId "com.ronak.cryptoApplication"
         minSdk 21
         targetSdk 33
         versionCode 1

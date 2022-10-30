@@ -1,11 +1,11 @@
-package com.ronak.junoApplication.adapter
+package com.ronak.cryptoApplication.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.ronak.junoApplication.databinding.LayoutTransactionBinding
-import com.ronak.junoApplication.dto.TransactionDto
+import com.ronak.cryptoApplication.databinding.LayoutTransactionBinding
+import com.ronak.cryptoApplication.dto.TransactionDto
 
 class TransactionsAdapter(
     private var transactionDtoList: MutableList<TransactionDto>?,

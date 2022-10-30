@@ -1,6 +1,6 @@
-package com.ronak.junoApplication.remote
+package com.ronak.cryptoApplication.remote
 
-import com.ronak.junoApplication.BuildConfig
+import com.ronak.cryptoApplication.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -1,12 +1,13 @@
-package com.ronak.junoApplication.adapter
+package com.ronak.cryptoApplication.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.ronak.junoApplication.databinding.LayoutCryptoPriceBinding
-import com.ronak.junoApplication.dto.CryptoPrice
-import com.ronak.junoApplication.util.BuyButtonClickListener
+import com.ronak.cryptoApplication.databinding.LayoutCryptoPriceBinding
+import com.ronak.cryptoApplication.dto.CryptoPrice
+import com.ronak.cryptoApplication.util.BuyButtonClickListener
 
 class CurrentPricesAdapter(
     private var cryptosList: List<CryptoPrice>?,
@@ -27,7 +28,10 @@ class CurrentPricesAdapter(
     inner class CurrentPriceViewHolder(var binding: LayoutCryptoPriceBinding) :
         ViewHolder(binding.root) {
         fun bind(cryptoPrice: CryptoPrice?) {
+            val context = binding.root.context
             binding.cryptoPrice = cryptoPrice
+            binding.tvGrowth.setTextColor(ContextCompat.getColor(context,
+                if (adapterPosition % 2 == 0) android.R.color.holo_red_light else android.R.color.holo_green_dark))
             binding.btnBuy.setOnClickListener {
                 onBuyClickListener.onBuyButtonClick(cryptoPrice?.logo, cryptoPrice?.title,
                     cryptoPrice?.current_price_in_usd)

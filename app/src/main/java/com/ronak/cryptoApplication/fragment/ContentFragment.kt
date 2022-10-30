@@ -1,4 +1,4 @@
-package com.ronak.junoApplication.fragment
+package com.ronak.cryptoApplication.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,29 +8,29 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.ronak.junoApplication.JunoViewModel
-import com.ronak.junoApplication.R
-import com.ronak.junoApplication.adapter.CurrentPricesAdapter
-import com.ronak.junoApplication.adapter.TransactionsAdapter
-import com.ronak.junoApplication.adapter.YourHoldingsAdapter
-import com.ronak.junoApplication.databinding.FragmentContentBinding
-import com.ronak.junoApplication.dto.ResponseDto
-import com.ronak.junoApplication.dto.TransactionDto
-import com.ronak.junoApplication.remote.Resource
-import com.ronak.junoApplication.remote.State
-import com.ronak.junoApplication.util.BuyButtonClickListener
-import com.ronak.junoApplication.util.ImageUtil
+import com.ronak.cryptoApplication.CryptoViewModel
+import com.ronak.cryptoApplication.R
+import com.ronak.cryptoApplication.adapter.CurrentPricesAdapter
+import com.ronak.cryptoApplication.adapter.TransactionsAdapter
+import com.ronak.cryptoApplication.adapter.YourHoldingsAdapter
+import com.ronak.cryptoApplication.databinding.FragmentContentBinding
+import com.ronak.cryptoApplication.dto.ResponseDto
+import com.ronak.cryptoApplication.dto.TransactionDto
+import com.ronak.cryptoApplication.remote.Resource
+import com.ronak.cryptoApplication.remote.State
+import com.ronak.cryptoApplication.util.BuyButtonClickListener
+import com.ronak.cryptoApplication.util.ImageUtil
 import java.math.BigDecimal
 
 class ContentFragment : Fragment() {
 
     private lateinit var binding: FragmentContentBinding
     private var isValues = false
-    private lateinit var junoViewModel: JunoViewModel
+    private lateinit var cryptoViewModel: CryptoViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        junoViewModel = ViewModelProvider(requireActivity())[JunoViewModel::class.java]
+        cryptoViewModel = ViewModelProvider(requireActivity())[CryptoViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -47,14 +47,14 @@ class ContentFragment : Fragment() {
         arguments?.let { isValues = ContentFragmentArgs.fromBundle(it).state }
 
         ImageUtil.loadGif(binding.ivMain, R.raw.crypto, requireContext().packageName)
-        junoViewModel.responseResource.observe(viewLifecycleOwner) {
+        cryptoViewModel.responseResource.observe(viewLifecycleOwner) {
             handleResource(it)
         }
 
         if (isValues) {
-            junoViewModel.getValues()
+            cryptoViewModel.getValues()
         } else {
-            junoViewModel.getEmptyValues()
+            cryptoViewModel.getEmptyValues()
         }
         binding.isValues = isValues
     }
@@ -62,8 +62,8 @@ class ContentFragment : Fragment() {
     private fun handleResource(it: Resource<ResponseDto?>) {
         when (it.state) {
             State.SUCCESS -> {
-                if (isValues) renderData(junoViewModel.valuesResponseData.value)
-                else renderData(junoViewModel.emptyResponseData.value)
+                if (isValues) renderData(cryptoViewModel.valuesResponseData.value)
+                else renderData(cryptoViewModel.emptyResponseData.value)
             }
             State.LOADING -> {
                 binding.displayedChild = State.LOADING.ordinal
@@ -108,6 +108,7 @@ class ContentFragment : Fragment() {
                 transactionDto.txn_amount = price
                 transactionDto.txn_logo = logo
                 transactionDto.txn_time = getString(R.string.just_now)
+                transactionDto.txn_sub_amount = getString(R.string.buy_price_placeholder, price)
                 transactionAdapter.updateTransactionDtoList(transactionDto)
                 binding.groupTransaction.visibility = View.VISIBLE
             }

@@ -1,4 +1,4 @@
-package com.ronak.junoApplication.dto
+package com.ronak.cryptoApplication.dto
 
 import java.math.BigDecimal
 

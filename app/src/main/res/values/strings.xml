@@ -16,5 +16,7 @@
     <string name="na">NA</string>
     <string name="just_now">Just now</string>
     <string name="error_placeholder">Error: %s. Please Try Again!</string>
-
+    <string name="growth_percent">7.22%</string>
+    <string name="growth_time">24h</string>
+    <string name="buy_price_placeholder">Buy Price: $%s</string>
 </resources>

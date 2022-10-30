@@ -1,10 +1,10 @@
-package com.ronak.junoApplication.util
+package com.ronak.cryptoApplication.util
 
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.ViewFlipper
 import androidx.databinding.BindingAdapter
-import com.ronak.junoApplication.R
+import com.ronak.cryptoApplication.R
 import java.math.BigDecimal
 import java.text.NumberFormat
 import java.util.*

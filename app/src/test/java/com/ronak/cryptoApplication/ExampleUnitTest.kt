@@ -1,4 +1,4 @@
-package com.ronak.junoApplication
+package com.ronak.cryptoApplication
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

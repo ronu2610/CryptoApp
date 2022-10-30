@@ -18,7 +18,7 @@
 
         <variable
             name="responseDto"
-            type="com.ronak.junoApplication.dto.ResponseDto" />
+            type="com.ronak.cryptoApplication.dto.ResponseDto" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -64,8 +64,11 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
+                            android:layout_marginBottom="8dp"
                             android:text="@{responseDto.crypto_balance.title}"
-                            android:textAppearance="?attr/textAppearanceSubtitle1"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@id/tv_sub"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/iv_main"
                             app:layout_constraintTop_toTopOf="parent"
@@ -76,8 +79,9 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
+                            android:layout_marginTop="8dp"
                             android:text="@{responseDto.crypto_balance.subtitle}"
-                            android:textAppearance="?attr/textAppearanceBody2"
+                            android:textAppearance="?attr/textAppearanceBody1"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/iv_main"
@@ -101,6 +105,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAppearance="?attr/textAppearanceSubtitle1"
+                            android:textStyle="bold"
                             android:visibility="@{isValues?View.VISIBLE:View.GONE}"
                             app:amountText="@{responseDto.crypto_balance.current_bal_in_usd}"
                             app:layout_constraintBottom_toBottomOf="parent"

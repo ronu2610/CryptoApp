@@ -1,4 +1,4 @@
-package com.ronak.junoApplication.util
+package com.ronak.cryptoApplication.util
 
 import android.net.Uri
 import android.os.Build
@@ -9,7 +9,7 @@ import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.decode.SvgDecoder
 import coil.load
-import com.ronak.junoApplication.R
+import com.ronak.cryptoApplication.R
 
 object ImageUtil {
 

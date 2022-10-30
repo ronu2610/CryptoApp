@@ -1,15 +1,15 @@
-package com.ronak.junoApplication
+package com.ronak.cryptoApplication
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.ronak.junoApplication.dto.ResponseDto
-import com.ronak.junoApplication.remote.Resource
+import com.ronak.cryptoApplication.dto.ResponseDto
+import com.ronak.cryptoApplication.remote.Resource
 import kotlinx.coroutines.launch
 
-class JunoViewModel(application: Application) : AndroidViewModel(application) {
+class CryptoViewModel(application: Application) : AndroidViewModel(application) {
 
     private var apiRepository = ApiRepository()
     private var _emptyResponseData = MutableLiveData<ResponseDto?>()
