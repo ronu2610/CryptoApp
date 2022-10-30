@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Juno</string>
+    <string name="app_name">CrypKit</string>
     <string name="home_label">Home</string>
     <string name="empty_option">Empty Page</string>
     <string name="values_option">Values Page</string>
