@@ -8,8 +8,13 @@ import com.ronak.junoApplication.databinding.LayoutTransactionBinding
 import com.ronak.junoApplication.dto.TransactionDto
 
 class TransactionsAdapter(
-    private var transactionDtoList: List<TransactionDto>?,
+    private var transactionDtoList: MutableList<TransactionDto>?,
 ) : RecyclerView.Adapter<TransactionsAdapter.TransactionViewHolder>() {
+
+    fun updateTransactionDtoList(transactionDto: TransactionDto?) {
+        transactionDto?.let { this.transactionDtoList?.add(0, it) }
+        notifyItemInserted(0)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

@@ -13,6 +13,10 @@
             type="boolean" />
 
         <variable
+            name="displayedChild"
+            type="int" />
+
+        <variable
             name="responseDto"
             type="com.ronak.junoApplication.dto.ResponseDto" />
     </data>
@@ -20,178 +24,196 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         tools:context=".fragment.ContentFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ViewFlipper
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            app:displayedChild="@{displayedChild}">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cv_crypto_balance"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_crypto_balance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="24dp">
+                    android:layout_margin="24dp"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/iv_main"
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:contentDescription="@string/crypto_account"
-                        android:src="@drawable/ic_app_icon"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:padding="24dp">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_main"
-                        android:layout_width="0dp"
+                        <ImageView
+                            android:id="@+id/iv_main"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:contentDescription="@string/crypto_account"
+                            android:src="@drawable/ic_app_icon"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_main"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="@{responseDto.crypto_balance.title}"
+                            android:textAppearance="?attr/textAppearanceSubtitle1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/iv_main"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="@string/crypto_account" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_sub"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="@{responseDto.crypto_balance.subtitle}"
+                            android:textAppearance="?attr/textAppearanceBody2"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/iv_main"
+                            app:layout_constraintTop_toBottomOf="@id/tv_main"
+                            tools:text="@string/btc_eth_and_more" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/deposit"
+                            android:visibility="@{isValues?View.GONE:View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tv_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{@string/dollars_placeholder(responseDto.crypto_balance.current_bal_in_usd)}"
+                            android:textAppearance="?attr/textAppearanceSubtitle1"
+                            android:visibility="@{isValues?View.VISIBLE:View.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@id/cv_crypto_balance" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_your_cryptos"
+                    style="?attr/textAppearanceSubtitle1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:text="@string/your_crypto_holdings"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_crypto_holdings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_your_cryptos">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_holdings"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@{responseDto.crypto_balance.title}"
-                        android:textAppearance="?attr/textAppearanceSubtitle1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/iv_main"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="@string/crypto_account" />
+                        bind:listitem="@layout/layout_your_holdings" />
+                </com.google.android.material.card.MaterialCardView>
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_sub"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@{responseDto.crypto_balance.subtitle}"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/iv_main"
-                        app:layout_constraintTop_toBottomOf="@id/tv_main"
-                        tools:text="@string/btc_eth_and_more" />
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@id/cv_crypto_holdings" />
 
-                    <com.google.android.material.button.MaterialButton
-                        style="?attr/materialButtonOutlinedStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/deposit"
-                        android:visibility="@{isValues?View.GONE:View.VISIBLE}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tv_balance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{@string/dollars_placeholder(responseDto.crypto_balance.current_bal_in_usd)}"
-                        android:textAppearance="?attr/textAppearanceSubtitle1"
-                        android:visibility="@{isValues?View.VISIBLE:View.GONE}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/cv_crypto_balance" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_your_cryptos"
-                style="?attr/textAppearanceSubtitle1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                android:text="@string/your_crypto_holdings"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cv_crypto_holdings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                app:layout_constraintTop_toBottomOf="@id/tv_your_cryptos">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_transactions"
+                    style="?attr/textAppearanceSubtitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:text="@string/recent_transactions"
+                    android:visibility="@{isValues?View.VISIBLE:View.GONE}"
+                    app:layout_constraintTop_toBottomOf="@id/divider2" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_holdings"
+                    android:id="@+id/rv_transactions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:padding="12dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toTopOf="parent"
-                    bind:listitem="@layout/layout_your_holdings" />
-            </com.google.android.material.card.MaterialCardView>
+                    app:layout_constraintTop_toBottomOf="@id/tv_transactions"
+                    bind:listitem="@layout/layout_transaction" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/cv_crypto_holdings" />
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/group_transaction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="divider2,tv_transactions,rv_transactions" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_transactions"
-                style="?attr/textAppearanceSubtitle1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                android:text="@string/recent_transactions"
-                app:layout_constraintTop_toBottomOf="@id/divider2" />
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@id/rv_transactions" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_transactions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/tv_transactions"
-                bind:listitem="@layout/layout_transaction" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_current_prices"
+                    style="?attr/textAppearanceSubtitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:text="@string/current_prices"
+                    app:layout_constraintTop_toBottomOf="@id/divider3" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/rv_transactions" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_prices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tv_current_prices"
+                    bind:listitem="@layout/layout_crypto_price" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_current_prices"
-                style="?attr/textAppearanceSubtitle1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="24dp"
-                android:text="@string/current_prices"
-                app:layout_constraintTop_toBottomOf="@id/divider3" />
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_prices" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_prices"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingHorizontal="12dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/tv_current_prices"
-                bind:listitem="@layout/layout_crypto_price" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/rv_prices" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <include layout="@layout/layout_shimmer_content" />
+        </ViewFlipper>
     </androidx.core.widget.NestedScrollView>
 </layout>

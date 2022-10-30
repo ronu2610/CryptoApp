@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ronak.junoApplication.databinding.LayoutCryptoPriceBinding
 import com.ronak.junoApplication.dto.CryptoPrice
+import com.ronak.junoApplication.util.BuyButtonClickListener
 
 class CurrentPricesAdapter(
     private var cryptosList: List<CryptoPrice>?,
+    private var onBuyClickListener: BuyButtonClickListener,
 ) : RecyclerView.Adapter<CurrentPricesAdapter.CurrentPriceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrentPriceViewHolder {
@@ -26,6 +28,10 @@ class CurrentPricesAdapter(
         ViewHolder(binding.root) {
         fun bind(cryptoPrice: CryptoPrice?) {
             binding.cryptoPrice = cryptoPrice
+            binding.btnBuy.setOnClickListener {
+                onBuyClickListener.onBuyButtonClick(cryptoPrice?.logo, cryptoPrice?.title,
+                    cryptoPrice?.current_price_in_usd)
+            }
             binding.executePendingBindings()
         }
     }

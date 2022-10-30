@@ -99,5 +99,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata:2.5.1"
     //LivedataReactiveStreams
     implementation "androidx.lifecycle:lifecycle-reactivestreams:2.5.1"
-
+    implementation "com.facebook.shimmer:shimmer:0.5.0"
 }

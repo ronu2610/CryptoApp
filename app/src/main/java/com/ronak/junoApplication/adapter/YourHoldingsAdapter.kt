@@ -5,11 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ronak.junoApplication.databinding.LayoutYourHoldingsBinding
+import com.ronak.junoApplication.dto.CryptoPrice
 import com.ronak.junoApplication.dto.YourCryptoHolding
+import com.ronak.junoApplication.util.BuyButtonClickListener
 
 class YourHoldingsAdapter(
     private var isValues: Boolean,
     private var holdingsList: List<YourCryptoHolding>?,
+    private var cryptoPrices: List<CryptoPrice>?,
+    private var onBuyClickListener: BuyButtonClickListener?,
 ) : RecyclerView.Adapter<YourHoldingsAdapter.HoldingsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoldingsViewHolder {
@@ -27,6 +31,11 @@ class YourHoldingsAdapter(
         fun bind(yourCryptoHolding: YourCryptoHolding?) {
             binding.isValues = isValues
             binding.yourHolding = yourCryptoHolding
+            binding.btnBuy.setOnClickListener {
+                onBuyClickListener?.onBuyButtonClick(yourCryptoHolding?.logo,
+                    yourCryptoHolding?.title,
+                    cryptoPrices?.get(adapterPosition)?.current_price_in_usd)
+            }
             binding.executePendingBindings()
         }
     }

@@ -13,5 +13,9 @@
     <string name="your_crypto_holdings">Your Crypto Holdings</string>
     <string name="recent_transactions">Recent Transactions</string>
     <string name="current_prices">Current Prices</string>
+    <string name="bought_crypto">Bought %s</string>
+    <string name="na">NA</string>
+    <string name="just_now">Just now</string>
+    <string name="error_placeholder">Error: %s. Please Try Again!</string>
 
 </resources>
