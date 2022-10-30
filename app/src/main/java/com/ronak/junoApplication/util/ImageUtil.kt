@@ -37,5 +37,4 @@ object ImageUtil {
     private fun getGifUri(@RawRes rawResId: Int, packageName: String): Uri? {
         return Uri.parse("android.resource://$packageName/$rawResId")
     }
-
 }
