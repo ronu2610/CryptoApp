@@ -6,6 +6,15 @@
 [![CrypKit App](https://img.shields.io/badge/CryptKit💰-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/ronu2610/CryptoApp/tree/main/apk)
 
 
+## Libraries Used : 
+
+- Material3
+- Coil
+- Coroutines
+- Retrofit
+- Shimmer
+- MVVM architecture
+
 ## 📸 Screenshots
 
 **Please click the image below to enlarge.**
